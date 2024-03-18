@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>wasm-llava</title>
+    <link href="/2024/03/18/wasm-llava/"/>
+    <url>/2024/03/18/wasm-llava/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Wasm-大模型实践-以LlAVA为例"><a href="#Wasm-大模型实践-以LlAVA为例" class="headerlink" title="Wasm 大模型实践(以LlAVA为例)"></a>Wasm 大模型实践(以LlAVA为例)</h1><h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一.概述"></a>一.概述</h2><p>解决繁琐的部署步骤,以及高性能的推理实践,并且达到实现跨平台</p><h2 id="二-步骤"><a href="#二-步骤" class="headerlink" title="二.步骤"></a>二.步骤</h2><p>1.安装wasmedge</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugin wasi_nn-ggml<br></code></pre></td></tr></table></figure><p>2.模型下载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -LO https://huggingface.co/mys/ggml_llava-v1.5-7b/resolve/main/ggml-model-q5_k.gguf<br>curl -LO https://huggingface.co/mys/ggml_llava-v1.5-7b/resolve/main/mmproj-model-f16.gguf<br><br></code></pre></td></tr></table></figure><p>3.测试图片下载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -LO https://llava-vl.github.io/static/images/monalisa.jpg<br><br></code></pre></td></tr></table></figure><ol start="4"><li>启动</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">wasmedge --<span class="hljs-built_in">dir</span> .:. \<br>--<span class="hljs-built_in">env</span> mmproj=mmproj-model-f16.gguf \<br>--<span class="hljs-built_in">env</span> image=monalisa.jpg \<br>--nn-preload default:GGML:AUTO:ggml-model-q5_k.gguf \<br>wasmedge-ggml-llava.wasm default<br><br></code></pre></td></tr></table></figure><p>5.使用<br><img src="/wasm-llava/img.png" alt="img.png">!</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>LlAVA</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>esp32-idf</title>
     <link href="/2024/03/15/esp32-idf/"/>
     <url>/2024/03/15/esp32-idf/</url>
